@@ -1,12 +1,161 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
-    <title>Web Engineering Lab</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Engineering Lab 2</title>
+
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
-    <h1 id="greeting"></h1>
 
-    <script src="script.js"></script>
+  <body>
+    <!-- Task 1: Skip Link -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- Task 1: Header and Navigation -->
+    <header>
+      <h1 id="greeting">Hello!</h1>
+
+      <nav>
+        <ul>
+          <li>
+            <a href="#schedule" aria-current="location"> Office Hours </a>
+          </li>
+
+          <li>
+            <a href="#feedback"> Send Feedback </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Task 2: Main Content -->
+    <main id="main-content">
+      <!-- Task 3: Office Hours -->
+      <section id="schedule">
+        <h2>Office Hours</h2>
+
+        <table>
+          <caption>
+            Weekly office hours
+          </caption>
+
+          <thead>
+            <tr>
+              <th scope="col">Day</th>
+              <th scope="col">Time</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>Monday</td>
+              <td>
+                <time datetime="10:00">10:00</time> -
+                <time datetime="11:00">11:00</time>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Wednesday</td>
+              <td>
+                <time datetime="12:00">12:00</time> -
+                <time datetime="13:00">13:00</time>
+              </td>
+            </tr>
+
+            <tr>
+              <td>Friday</td>
+              <td>
+                <time datetime="14:00">14:00</time> -
+                <time datetime="15:00">15:00</time>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Task 4: Informative SVG -->
+        <figure>
+          <svg
+            role="img"
+            aria-labelledby="pin-title"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <title id="pin-title">Location pin</title>
+
+            <circle cx="12" cy="8" r="4" fill="#0b3d91"></circle>
+
+            <path
+              d="M12 22 C12 22 5 15 5 9 A7 7 0 0 1 19 9 C19 15 12 22 12 22Z"
+              fill="none"
+              stroke="#0b3d91"
+              stroke-width="2"
+            ></path>
+          </svg>
+
+          <figcaption>All office hours are held in Room 214.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Task 4: Decorative SVG -->
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="3" fill="#0b3d91"></circle>
+      </svg>
+
+      <!-- Task 5 and Task 6: Send Feedback -->
+      <section id="feedback">
+        <h2>Send Feedback</h2>
+
+        <form>
+          <!-- Name -->
+          <p>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" />
+          </p>
+
+          <!-- Email -->
+          <p>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" />
+          </p>
+
+          <!-- Task 6: Topic -->
+          <fieldset>
+            <legend>Topic</legend>
+
+            <p>
+              <input type="radio" id="general" name="topic" value="general" />
+              <label for="general">General</label>
+            </p>
+
+            <p>
+              <input type="radio" id="course" name="topic" value="course" />
+              <label for="course">Course</label>
+            </p>
+
+            <p>
+              <input type="radio" id="website" name="topic" value="website" />
+              <label for="website">Website</label>
+            </p>
+          </fieldset>
+
+          <!-- Task 6: Message -->
+          <p>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" cols="30"></textarea>
+          </p>
+
+          <!-- Task 6: Submit Button -->
+          <button type="submit">Submit Feedback</button>
+        </form>
+      </section>
+    </main>
+
+    <!-- Task 2: Footer -->
+    <footer>
+      <address>Contact your instructor for help.</address>
+    </footer>
   </body>
 </html>
