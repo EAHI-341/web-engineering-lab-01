@@ -3,46 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web Engineering Lab 2</title>
+
+    <meta
+      name="description"
+      content="Web Engineering Lab 03 - Accessible and responsive web page"
+    />
+
+    <title>Web Engineering Lab 03</title>
 
     <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
-    <!-- Task 1: Skip Link -->
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <!-- Task 1: Header and Navigation -->
     <header>
-      <h1 id="greeting">Hello!</h1>
+      <h1>Web Engineering Lab</h1>
 
-      <nav>
+      <nav aria-label="Main navigation">
         <ul>
           <li>
-            <a href="#schedule" aria-current="location"> Office Hours </a>
+            <a href="index.html" aria-current="location">Home</a>
           </li>
 
           <li>
-            <a href="#feedback"> Send Feedback </a>
+            <a href="#schedule">Schedule</a>
+          </li>
+
+          <li>
+            <a href="#contact">Contact</a>
           </li>
         </ul>
       </nav>
     </header>
 
-    <!-- Task 2: Main Content -->
     <main id="main-content">
-      <!-- Task 3: Office Hours -->
-      <section id="schedule">
-        <h2>Office Hours</h2>
+      <section aria-labelledby="welcome-heading">
+        <h2 id="welcome-heading">Welcome</h2>
+
+        <p class="text-muted">
+          This page demonstrates accessible HTML, responsive design, and modern
+          CSS techniques.
+        </p>
+      </section>
+
+      <section aria-labelledby="schedule-heading" id="schedule">
+        <h2 id="schedule-heading">Schedule</h2>
 
         <table>
-          <caption>
-            Weekly office hours
-          </caption>
-
           <thead>
             <tr>
               <th scope="col">Day</th>
+              <th scope="col">Topic</th>
               <th scope="col">Time</th>
             </tr>
           </thead>
@@ -50,112 +62,51 @@
           <tbody>
             <tr>
               <td>Monday</td>
-              <td>
-                <time datetime="10:00">10:00</time> -
-                <time datetime="11:00">11:00</time>
-              </td>
+              <td>HTML &amp; Accessibility</td>
+              <td>10:00 AM</td>
+            </tr>
+
+            <tr>
+              <td>Tuesday</td>
+              <td>CSS &amp; Layout</td>
+              <td>11:00 AM</td>
             </tr>
 
             <tr>
               <td>Wednesday</td>
-              <td>
-                <time datetime="12:00">12:00</time> -
-                <time datetime="13:00">13:00</time>
-              </td>
-            </tr>
-
-            <tr>
-              <td>Friday</td>
-              <td>
-                <time datetime="14:00">14:00</time> -
-                <time datetime="15:00">15:00</time>
-              </td>
+              <td>JavaScript</td>
+              <td>12:00 PM</td>
             </tr>
           </tbody>
         </table>
-
-        <!-- Task 4: Informative SVG -->
-        <figure>
-          <svg
-            role="img"
-            aria-labelledby="pin-title"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
-            <title id="pin-title">Location pin</title>
-
-            <circle cx="12" cy="8" r="4" fill="#0b3d91"></circle>
-
-            <path
-              d="M12 22 C12 22 5 15 5 9 A7 7 0 0 1 19 9 C19 15 12 22 12 22Z"
-              fill="none"
-              stroke="#0b3d91"
-              stroke-width="2"
-            ></path>
-          </svg>
-
-          <figcaption>All office hours are held in Room 214.</figcaption>
-        </figure>
       </section>
 
-      <!-- Task 4: Decorative SVG -->
-      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="3" fill="#0b3d91"></circle>
-      </svg>
-
-      <!-- Task 5 and Task 6: Send Feedback -->
-      <section id="feedback">
-        <h2>Send Feedback</h2>
+      <section aria-labelledby="contact-heading" id="contact">
+        <h2 id="contact-heading">Contact</h2>
 
         <form>
-          <!-- Name -->
           <p>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" />
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required />
           </p>
 
-          <!-- Email -->
           <p>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" />
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
           </p>
 
-          <!-- Task 6: Topic -->
-          <fieldset>
-            <legend>Topic</legend>
-
-            <p>
-              <input type="radio" id="general" name="topic" value="general" />
-              <label for="general">General</label>
-            </p>
-
-            <p>
-              <input type="radio" id="course" name="topic" value="course" />
-              <label for="course">Course</label>
-            </p>
-
-            <p>
-              <input type="radio" id="website" name="topic" value="website" />
-              <label for="website">Website</label>
-            </p>
-          </fieldset>
-
-          <!-- Task 6: Message -->
           <p>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="5" cols="30"></textarea>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5"></textarea>
           </p>
 
-          <!-- Task 6: Submit Button -->
-          <button type="submit">Submit Feedback</button>
+          <button type="submit">Send</button>
         </form>
       </section>
     </main>
 
-    <!-- Task 2: Footer -->
     <footer>
-      <address>Contact your instructor for help.</address>
+      <p>&copy; 2025 Web Engineering Lab</p>
     </footer>
   </body>
 </html>
