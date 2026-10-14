@@ -1,54 +1,38 @@
+```html
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <meta
-      name="description"
-      content="Web Engineering Lab 03 - Accessible and responsive web page"
-    />
-
-    <title>Web Engineering Lab 03</title>
-
-    <link rel="stylesheet" href="styles.css" />
+    <title>Web Engineering Lab</title>
+    <link rel="stylesheet" href="./styles.css" />
   </head>
-
   <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <a class="skip-link" href="#main">Skip to main content</a>
 
     <header>
       <h1>Web Engineering Lab</h1>
 
       <nav aria-label="Main navigation">
         <ul>
-          <li>
-            <a href="index.html" aria-current="location">Home</a>
-          </li>
-
-          <li>
-            <a href="#schedule">Schedule</a>
-          </li>
-
-          <li>
-            <a href="#contact">Contact</a>
-          </li>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </header>
 
-    <main id="main-content">
-      <section aria-labelledby="welcome-heading">
-        <h2 id="welcome-heading">Welcome</h2>
-
-        <p class="text-muted">
+    <main id="main">
+      <section id="home">
+        <h2>Welcome</h2>
+        <p>
           This page demonstrates accessible HTML, responsive design, and modern
           CSS techniques.
         </p>
       </section>
 
-      <section aria-labelledby="schedule-heading" id="schedule">
-        <h2 id="schedule-heading">Schedule</h2>
+      <section id="schedule">
+        <h2 class="span-all">Schedule</h2>
 
         <table>
           <thead>
@@ -56,6 +40,7 @@
               <th scope="col">Day</th>
               <th scope="col">Topic</th>
               <th scope="col">Time</th>
+              <th scope="col">Book</th>
             </tr>
           </thead>
 
@@ -64,38 +49,54 @@
               <td>Monday</td>
               <td>HTML &amp; Accessibility</td>
               <td>10:00 AM</td>
+              <td>
+                <button type="button" data-day="Monday">Select</button>
+              </td>
             </tr>
 
             <tr>
               <td>Tuesday</td>
               <td>CSS &amp; Layout</td>
               <td>11:00 AM</td>
+              <td>
+                <button type="button" data-day="Tuesday">Select</button>
+              </td>
             </tr>
 
             <tr>
               <td>Wednesday</td>
               <td>JavaScript</td>
               <td>12:00 PM</td>
+              <td>
+                <button type="button" data-day="Wednesday">Select</button>
+              </td>
             </tr>
           </tbody>
         </table>
+
+        <p id="booking-status" role="status" aria-live="polite"></p>
+
+        <figure>
+          <span aria-hidden="true">📅</span>
+          <figcaption>Pick your preferred day</figcaption>
+        </figure>
       </section>
 
-      <section aria-labelledby="contact-heading" id="contact">
-        <h2 id="contact-heading">Contact</h2>
+      <section id="contact">
+        <h2>Contact</h2>
 
         <form>
           <p>
             <label for="name">Name</label>
-            <input id="name" name="name" type="text" required />
+            <input type="text" id="name" name="name" />
           </p>
 
           <p>
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" required />
+            <input type="email" id="email" name="email" />
           </p>
 
-          <p>
+          <p class="span-all">
             <label for="message">Message</label>
             <textarea id="message" name="message" rows="5"></textarea>
           </p>
@@ -108,5 +109,7 @@
     <footer>
       <p>&copy; 2025 Web Engineering Lab</p>
     </footer>
+    <script type="module" src="./main.js"></script>
   </body>
 </html>
+```

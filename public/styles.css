@@ -28,9 +28,9 @@
 
     --color-border: light-dark(oklch(75% 0.03 250), oklch(45% 0.03 250));
 
-    --color-muted: light-dark(oklch(55% 0.03 250), oklch(75% 0.03 250));
+    --color-muted: light-dark(oklch(45% 0.03 250), oklch(80% 0.03 250));
 
-    --color-on-accent: light-dark(oklch(100% 0 0), oklch(20% 0.03 250));
+    --color-on-accent: light-dark(white, oklch(20% 0.03 250));
 
     --space: 1rem;
   }
@@ -49,20 +49,107 @@
     font: inherit;
   }
 
-  #schedule-heading {
-    color: crimson;
+  img,
+  table,
+  input,
+  textarea {
+    max-width: 100%;
   }
 }
 
 @layer components {
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space);
+    padding-block-end: var(--space);
+    border-block-end: 1px solid var(--color-border);
+  }
+
   main {
     max-inline-size: 60rem;
     margin-inline: auto;
     padding-block: 1rem;
   }
 
+  nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav ul li a {
+    color: var(--color-accent);
+  }
+
+  nav ul li a:hover {
+    color: var(--color-text);
+  }
+
+  a[aria-current="location"] {
+    color: var(--color-accent);
+  }
+
+  h2 {
+    color: var(--color-accent);
+  }
+
+  figure {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  #schedule {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: var(--space);
+    align-items: start;
+  }
+
+  #schedule table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  #schedule th,
+  #schedule td {
+    padding: 0.25rem 0.15rem;
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+
+  form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0 var(--space);
+  }
+
   form p {
+    min-width: 0;
     margin-block: 0.5rem 1rem;
+  }
+
+  form label {
+    display: block;
+    margin-block-end: 0.25rem;
+  }
+
+  form button {
+    justify-self: start;
+  }
+
+  input:not([type="radio"]),
+  textarea {
+    display: block;
+    width: 100%;
+    max-width: 100%;
   }
 
   .skip-link {
@@ -82,22 +169,6 @@
   textarea:focus-visible {
     outline: 3px solid var(--color-accent);
     outline-offset: 2px;
-  }
-
-  nav ul li a {
-    color: var(--color-accent);
-  }
-
-  nav ul li a:hover {
-    color: var(--color-text);
-  }
-
-  a[aria-current="location"] {
-    color: var(--color-accent);
-  }
-
-  h2 {
-    color: var(--color-accent);
   }
 
   button {
@@ -120,4 +191,83 @@
   .text-muted {
     color: var(--color-muted);
   }
+
+  .span-all {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Task 6: Responsive layout */
+@media (max-width: 40.5rem) {
+  header {
+    align-items: flex-start;
+  }
+
+  nav ul {
+    gap: 1rem;
+  }
+
+  #schedule,
+  form {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #schedule > *,
+  form > * {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+
+  #schedule table {
+    table-layout: fixed;
+    font-size: 0.85rem;
+  }
+
+  #schedule th,
+  #schedule td {
+    overflow-wrap: anywhere;
+  }
+
+  body {
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 40rem) {
+  #schedule {
+    grid-template-columns: 1fr;
+  }
+
+  #schedule > * {
+    grid-column: 1 / -1;
+  }
+
+  form {
+    grid-template-columns: 1fr;
+  }
+
+  form > * {
+    grid-column: 1 / -1;
+  }
+
+  #schedule table {
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  #schedule th,
+  #schedule td {
+    overflow-wrap: anywhere;
+  }
+  ```css
+/* Task 9: Highlight booked schedule rows */
+#schedule tr.selected th,
+#schedule tr.selected td {
+  background: color-mix(
+    in oklch,
+    var(--color-accent) 20%,
+    var(--color-surface)
+  );
+}
+```
 }
