@@ -1,0 +1,46 @@
+import { getRequired } from "./utils.js";
+const form = getRequired("form");
+const nameInput = getRequired("#name", form);
+const emailInput = getRequired("#email", form);
+const feedbackStatus = getRequired("#status");
+function showError(input, message) {
+    const error = document.createElement("span");
+    error.className = "error";
+    error.setAttribute("role", "alert");
+    error.textContent = message;
+    input.setAttribute("aria-invalid", "true");
+    input.after(error);
+}
+function clearErrors() {
+    form.querySelectorAll(".error").forEach((element) => {
+        element.remove();
+    });
+    form.querySelectorAll("[aria-invalid]").forEach((element) => {
+        element.removeAttribute("aria-invalid");
+    });
+}
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    clearErrors();
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    let valid = true;
+    if (name === "") {
+        showError(nameInput, "Please enter your name.");
+        valid = false;
+    }
+    if (email === "") {
+        showError(emailInput, "Please enter your email.");
+        valid = false;
+    }
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError(emailInput, "Please enter a valid email address.");
+        valid = false;
+    }
+    if (!valid) {
+        feedbackStatus.textContent = "Please correct the errors above.";
+        return;
+    }
+    feedbackStatus.textContent = `Thanks, ${name}! Your feedback was received.`;
+    form.reset();
+});

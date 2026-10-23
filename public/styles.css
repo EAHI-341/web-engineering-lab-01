@@ -1,3 +1,4 @@
+```css
 @layer reset, base, components, utilities;
 
 @layer reset {
@@ -20,16 +21,12 @@
   :root {
     color-scheme: light dark;
 
+    --color-error: light-dark(oklch(45% 0.2 25), oklch(75% 0.15 25));
     --color-accent: light-dark(oklch(45% 0.2 250), oklch(75% 0.15 250));
-
     --color-text: light-dark(oklch(25% 0.03 250), oklch(92% 0.02 250));
-
     --color-surface: light-dark(oklch(98% 0.01 250), oklch(20% 0.03 250));
-
     --color-border: light-dark(oklch(75% 0.03 250), oklch(45% 0.03 250));
-
     --color-muted: light-dark(oklch(45% 0.03 250), oklch(80% 0.03 250));
-
     --color-on-accent: light-dark(white, oklch(20% 0.03 250));
 
     --space: 1rem;
@@ -99,11 +96,8 @@
     color: var(--color-accent);
   }
 
-  figure {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    min-width: 0;
+  section {
+    margin-block-end: 2rem;
   }
 
   #schedule {
@@ -125,11 +119,27 @@
     overflow-wrap: anywhere;
   }
 
-  form {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 0 var(--space);
+  figure {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
   }
+
+ form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0 var(--space);
+  align-items: start;
+  width: 100%;
+  max-width: 40rem;
+  margin-inline: 0;
+}
+
+form > * {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
 
   form p {
     min-width: 0;
@@ -150,6 +160,17 @@
     display: block;
     width: 100%;
     max-width: 100%;
+  }
+
+  .error {
+    display: block;
+    color: var(--color-error);
+    font-size: 0.9rem;
+    margin-block-start: 0.25rem;
+  }
+
+  input[aria-invalid="true"] {
+    border: 2px solid var(--color-error);
   }
 
   .skip-link {
@@ -185,6 +206,15 @@
     background-color: var(--color-text);
     border-color: var(--color-text);
   }
+
+  #schedule tr.selected th,
+  #schedule tr.selected td {
+    background: color-mix(
+      in oklch,
+      var(--color-accent) 20%,
+      var(--color-surface)
+    );
+  }
 }
 
 @layer utilities {
@@ -197,7 +227,6 @@
   }
 }
 
-/* Task 6: Responsive layout */
 @media (max-width: 40.5rem) {
   header {
     align-items: flex-start;
@@ -231,43 +260,4 @@
   body {
     overflow-wrap: anywhere;
   }
-}
-
-@media (max-width: 40rem) {
-  #schedule {
-    grid-template-columns: 1fr;
-  }
-
-  #schedule > * {
-    grid-column: 1 / -1;
-  }
-
-  form {
-    grid-template-columns: 1fr;
-  }
-
-  form > * {
-    grid-column: 1 / -1;
-  }
-
-  #schedule table {
-    width: 100%;
-    table-layout: fixed;
-  }
-
-  #schedule th,
-  #schedule td {
-    overflow-wrap: anywhere;
-  }
-  ```css
-/* Task 9: Highlight booked schedule rows */
-#schedule tr.selected th,
-#schedule tr.selected td {
-  background: color-mix(
-    in oklch,
-    var(--color-accent) 20%,
-    var(--color-surface)
-  );
-}
-```
 }

@@ -1,29 +1,44 @@
-import { delay, makeCounter } from "./utils.js";
-
-const tbody = document.querySelector("#schedule tbody");
-const status = document.querySelector("#booking-status");
-
+import { delay, makeCounter, getRequired, describeSlot, } from "./utils.js";
+const slots = [
+    {
+        day: "Monday",
+        start: "10:00",
+        end: "11:00",
+        room: "Room 214",
+    },
+    {
+        day: "Wednesday",
+        start: "14:00",
+        end: "15:00",
+        room: "Room 214",
+    },
+];
+const status = getRequired("#booking-status");
+const tbody = getRequired("#schedule tbody");
 const nextBooking = makeCounter();
-
 tbody.addEventListener("click", async (event) => {
-  const button = event.target.closest("button[data-day]");
-
-  if (!button || !tbody.contains(button)) {
-    return;
-  }
-
-  const day = button.dataset.day;
-  const row = button.closest("tr");
-
-  status.textContent = `Updating ${day}...`;
-
-  await delay(1000);
-
-  row.classList.toggle("selected");
-
-  const count = document.querySelectorAll("#schedule tr.selected").length;
-
-  status.textContent =
-    `Booking #${nextBooking()} confirmed for ${day}. ` +
-    `${count} slot(s) booked.`;
+    const target = event.target;
+    if (!(target instanceof Element)) {
+        return;
+    }
+    const button = target.closest("button[data-day]");
+    const row = target.closest("tr");
+    if (button === null || row === null || !tbody.contains(button)) {
+        return;
+    }
+    const day = button.dataset.day;
+    if (day === undefined) {
+        return;
+    }
+    const slot = slots.find((item) => item.day === day);
+    if (slot === undefined) {
+        return;
+    }
+    status.textContent = `Updating ${day}...`;
+    await delay(1000);
+    const booked = row.classList.toggle("selected");
+    const count = document.querySelectorAll("#schedule tr.selected").length;
+    status.textContent = booked
+        ? `Booking #${nextBooking()} confirmed: ${describeSlot(slot)}. ${count} of ${slots.length} slots booked.`
+        : `Booking for ${day} cancelled. ${count} of ${slots.length} slots booked.`;
 });

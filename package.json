@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "format": "prettier --check .",
     "start": "serve public"
